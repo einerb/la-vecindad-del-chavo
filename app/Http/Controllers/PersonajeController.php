@@ -3,6 +3,7 @@
 namespace LaVecindadDelChavo\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LaVecindadDelChavo\Personaje;
 
 class PersonajeController extends Controller
 {
@@ -13,7 +14,10 @@ class PersonajeController extends Controller
      */
     public function index()
     {
-        return view('personajes.index');
+        $personajes = Personaje::all();
+
+        
+        return view('personajes.index', compact('personajes'));
     }
 
     /**
@@ -34,7 +38,14 @@ class PersonajeController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $personaje = new Personaje();
+        $personaje->titulo = $request->input('txtTitulo');
+        $personaje->nombre = $request->input('txtName');
+        $personaje->apartamento = $request->input('txtApto');
+        $personaje->descripcion = $request->input('txtDescripcion');
+        $personaje->save();
+
+        return 'Personaje cargado';
     }
 
     /**
