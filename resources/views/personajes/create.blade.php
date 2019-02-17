@@ -2,6 +2,13 @@
 @section('title', 'Crear personaje')
 @section('content')
 <div class="container">
+    <h2>Nuevo inquilino</h2>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/personajes">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Crear personaje</li>
+        </ol>
+    </nav>
     <div class="d-flex justify-content-center">
         <div class="col-md-6">
             <div class="card">
@@ -36,7 +43,7 @@
                             <textarea class="form-control" name="txtDescripcion" id="txtDescripcion" rows="3"
                                 placeholder="Escribir alguna descripción..." style="resize:none;"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cargar/Editar</button>
+                        <button type="submit" class="btn btn-success">Cargar/Editar</button>
                     </form>
                 </div>
             </div>

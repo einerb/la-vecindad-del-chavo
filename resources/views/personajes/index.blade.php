@@ -19,7 +19,7 @@
                 @foreach ($personajes as $persona)
                 <tr>
                     <td>{{ $persona->id }}</td>
-                    <td><a href="">{{ $persona->titulo }} {{ $persona->nombre }}</a></td>
+                    <td><a href="/personajes/{{$persona->id}}">{{ $persona->titulo }} {{ $persona->nombre }}</a></td>
                     <td>{{ $persona->descripcion }}</td>
                     <td>{{ $persona->apartamento }}</td>
                     <td><a href="">Editar</a></td>
@@ -27,7 +27,7 @@
                 </tr>
                 @endforeach
                 @if(count($personajes) <= 0) <tr>
-                    <td colspan="5" class="font-weight-bolder text-muted">No hay registros</td>
+                    <td colspan="5" class="font-weight-bolder text-muted h5">No hay registros</td>
                     </tr>
                     @endif
             </tbody>

@@ -15,9 +15,8 @@
 <body style="margin-top: 5%;">
     @yield('content')
 
-
-    <footer>
-        <div class="text-center mt-4 mb-4">
+    <footer style="margin-top: 3%; background: #f5f5f5; padding: 20px;">
+        <div class="text-center">
             <p class="text-muted">Todos los derechos reservados al Autor</p>
         </div>
     </footer>

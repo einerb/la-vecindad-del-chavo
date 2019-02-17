@@ -15,8 +15,6 @@ class PersonajeController extends Controller
     public function index()
     {
         $personajes = Personaje::all();
-
-        
         return view('personajes.index', compact('personajes'));
     }
 
@@ -63,7 +61,8 @@ class PersonajeController extends Controller
      */
     public function show($id)
     {
-        //
+        $persona = Personaje::find($id);
+        return view('personajes.details', compact('persona'));
     }
 
     /**
