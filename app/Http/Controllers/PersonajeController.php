@@ -38,11 +38,18 @@ class PersonajeController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->hasFile('txtAvatar')){
+            $file = $request->file('txtAvatar');
+            $nameFile = time().'-'.$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$nameFile);
+        }
+
         $personaje = new Personaje();
         $personaje->titulo = $request->input('txtTitulo');
         $personaje->nombre = $request->input('txtName');
         $personaje->apartamento = $request->input('txtApto');
         $personaje->descripcion = $request->input('txtDescripcion');
+        $personaje->avatar = $nameFile;
         $personaje->save();
 
         return 'Personaje cargado';

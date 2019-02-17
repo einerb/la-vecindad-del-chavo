@@ -7,8 +7,11 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Cargar/Editar personaje</h4>
-                    <form class="form-group" method="post" action="/personajes">
+                    <form class="form-group" method="post" action="/personajes" enctype="multipart/form-data">
                         @csrf
+                        <div class="form-group">
+                            <input type="file" name="txtAvatar" id="txtAvatar">
+                        </div>
                         <div class="form-group">
                             <select class="form-control" name="txtTitulo">
                                 <option>Seleccione título</option>
@@ -20,13 +23,13 @@
                         </div>
                         <div class="form-group">
                             <label for="txtNombre">Nombre del personaje *</label>
-                            <input type="text" class="form-control" name="txtName" id="txtNombre" placeholder="Nombre del personaje"
-                                require autocomplete="off">
+                            <input type="text" class="form-control" name="txtName" id="txtNombre"
+                                placeholder="Nombre del personaje" require autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="txtApto">Apartamento *</label>
-                            <input type="text" class="form-control" name="txtApto" id="txtApto" placeholder="Apartamento"
-                                autocomplete="off">
+                            <input type="text" class="form-control" name="txtApto" id="txtApto"
+                                placeholder="Apartamento" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="txtDescripcion">Descripción</label>
