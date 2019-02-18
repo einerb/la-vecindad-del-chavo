@@ -14,6 +14,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/personajes', 'PersonajeController');
-
-Route::resource('/apodos', 'ApodoController');
+Route::resource('personajes', 'PersonajeController');
+Route::resource('apodos', 'ApodoController');

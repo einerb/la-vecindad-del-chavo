@@ -15,11 +15,11 @@ class CreatePersonajesTable extends Migration
     {
         Schema::create('personajes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo');
+            $table->string('titulo')->nullable();
             $table->string('nombre');
-            $table->string('apartamento');
+            $table->string('apartamento')->nullable();
             $table->string('descripcion');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }

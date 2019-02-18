@@ -2,8 +2,8 @@
 
 namespace LaVecindadDelChavo\Http\Controllers;
 
-use Illuminate\Http\Request;
 use LaVecindadDelChavo\Personaje;
+use Illuminate\Http\Request;
 
 class PersonajeController extends Controller
 {
@@ -36,21 +36,27 @@ class PersonajeController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('txtAvatar')){
-            $file = $request->file('txtAvatar');
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
             $nameFile = time().'-'.$file->getClientOriginalName();
             $file->move(public_path().'/images/',$nameFile);
         }
 
+        $request->validate([
+            'nombre'=> 'required',
+            'descripcion' => 'required'
+        ]);
+
         $personaje = new Personaje();
-        $personaje->titulo = $request->input('txtTitulo');
-        $personaje->nombre = $request->input('txtName');
-        $personaje->apartamento = $request->input('txtApto');
-        $personaje->descripcion = $request->input('txtDescripcion');
+        $personaje->titulo = ucwords($request->input('titulo'));
+        $personaje->nombre = ucwords($request->input('nombre'));
+        $personaje->apartamento = $request->input('apto');
+        $personaje->descripcion = ucwords($request->input('descripcion'));
         $personaje->avatar = $nameFile;
+        $personaje->slug = $request->input('nombre');
         $personaje->save();
 
-        return 'Personaje cargado';
+        return redirect('/personajes')->with('success', 'Personaje cargado');
     }
 
     /**
@@ -59,10 +65,10 @@ class PersonajeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $persona = Personaje::find($id);
-        return view('personajes.details', compact('persona'));
+        $persona = Personaje::where('slug','=',$slug)->firstOrFail();
+        return view('personajes.show', compact('persona'));
     }
 
     /**
@@ -71,9 +77,10 @@ class PersonajeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $persona = Personaje::where('slug','=',$slug)->firstOrFail();
+        return view('personajes.edit', compact('persona'));
     }
 
     /**
@@ -83,9 +90,24 @@ class PersonajeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $slug)
+    {       
+        $request->validate([
+            'nombre'=> 'required',
+            'descripcion' => 'required'
+        ]);
+
+        $personaje = Personaje::where('slug','=',$slug)->firstOrFail();
+        $personaje->fill($request->except('foto'));
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $nameFile = time().'-'.$file->getClientOriginalName();
+            $personaje->avatar = $nameFile;
+            $file->move(public_path().'/images/',$nameFile);
+        }
+        $personaje->save();
+
+        return redirect('/personajes/')->with('success', 'Personaje actualizado');
     }
 
     /**
@@ -94,8 +116,11 @@ class PersonajeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $persona = Personaje::where('slug','=',$slug)->firstOrFail();
+        $persona.delete();
+
+        return redirect('/personajes/')->with('success', 'Personaje eliminado');
     }
 }
