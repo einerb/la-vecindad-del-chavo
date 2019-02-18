@@ -15,3 +15,5 @@ Route::get('/', function () {
 });
 
 Route::resource('/personajes', 'PersonajeController');
+
+Route::resource('/apodos', 'ApodoController');

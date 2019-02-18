@@ -23,7 +23,7 @@
                     <td>{{ $persona->descripcion }}</td>
                     <td>{{ $persona->apartamento }}</td>
                     <td><a href="">Editar</a></td>
-                    <td><a href="">Eliminar</a></td>
+                    <td><a href="/personajes/{{$persona->id}}">Eliminar</a></td>
                 </tr>
                 @endforeach
                 @if(count($personajes) <= 0) <tr>
