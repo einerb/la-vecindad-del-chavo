@@ -2,7 +2,7 @@
 @section('title', 'Crear personaje') 
 @section('content')
 <div class="container">
-    <h2>Nuevo inquilino</h2>
+    <h2>Nuevo personaje</h2>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Inicio</a></li>
@@ -15,21 +15,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Cargar personaje</h4>
-
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    
-                    {{-- Formulario --}}
-                    {!! Form::open(['route'=> 'personajes.store', 'method'=> 'POST', 'files'=>true]) !!}
-                        @include('layouts.forms') {!!
-                    Form::submit('Cargar', ['class'=> 'btn btn-success']) !!} {!! Form::close() !!}
+    @include('partials.errors') {!! Form::open(['route'=> 'personajes.store', 'method'=> 'POST', 'files'=>true]) !!}
+    @include('layouts.forms')
+                    {!! Form::submit('Cargar', ['class'=> 'btn btn-success']) !!} {!! Form::close() !!}
                 </div>
             </div>
         </div>

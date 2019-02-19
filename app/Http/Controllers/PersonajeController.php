@@ -52,7 +52,7 @@ class PersonajeController extends Controller
         $personaje->slug = $request->input('nombre');
         $personaje->save();
 
-        return redirect()->route('personajes.index');
+        return redirect()->route('personajes.index')->with('created','Personaje creado con éxito');
     }
 
     /**
@@ -104,7 +104,7 @@ class PersonajeController extends Controller
         }
         $personaje->save();
 
-        return redirect()->route('personajes.show', [$personaje]);
+        return redirect()->route('personajes.show', [$personaje])->with('updated','Personaje actualizado con éxito');;
     }
 
     /**
@@ -116,8 +116,10 @@ class PersonajeController extends Controller
     public function destroy($slug)
     {
         $persona = Personaje::where('slug','=',$slug)->firstOrFail();
+        $file_path= public_path().'/images/'.$persona->avatar;
+        \File::delete($file_path);
         $persona->delete();
 
-        return redirect()->route('personajes.index');
+        return redirect()->route('personajes.index')->with('deleted','Personaje eliminado con éxito');;
     }
 }

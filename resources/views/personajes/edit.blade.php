@@ -17,15 +17,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Editar personaje</h4>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </div>
-                    @endif {!! Form::model($persona, ['route'=>['personajes.update',$persona], 'method'=>'PUT','files'=>true]) !!}
-                        @include('layouts.forms')
-                    {!! Form::submit('Editar', ['class'=> 'btn btn-primary']) !!} {!! Form::close()!!}
+    @include('partials.errors') {!! Form::model($persona, ['route'=>['personajes.update',$persona], 'method'=>'PUT','files'=>true])
+                    !!}
+    @include('layouts.forms') {!! Form::submit('Editar', ['class'=> 'btn btn-primary']) !!} {!! Form::close()!!}
                 </div>
             </div>
         </div>

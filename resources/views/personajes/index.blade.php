@@ -1,7 +1,8 @@
-@extends('layouts.layout')
-@section('title', 'Listado de personajes')
+@extends('layouts.layout') 
+@section('title', 'Listado de personajes') 
 @section('content')
 <div class="container">
+    @include('partials.success')
     <h3>Personajes de la Vecindad</h3>
     <a href="/personajes/create" class="btn btn-primary mt-4 mb-4">Cargar personaje</a>
     <div class="table-responsive mt-4">
@@ -23,10 +24,11 @@
                     <td>{{ $persona->descripcion }}</td>
                     <td>{{ $persona->apartamento }}</td>
                     <td><a href="/personajes/{{$persona->slug}}/edit" class="btn btn-sm btn-primary" style="width: 70px;">Editar</a></td>
-                    <td>@include('layouts.delete')</td>
+                    <td>
+    @include('layouts.delete')</td>
                 </tr>
-                @endforeach
-                @if(count($personajes) <= 0) <tr>
+                @endforeach @if(count($personajes)
+                <=0 ) <tr>
                     <td colspan="5" class="font-weight-bolder text-muted h5">No hay registros</td>
                     </tr>
                     @endif
