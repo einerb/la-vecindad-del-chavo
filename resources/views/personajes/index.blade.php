@@ -22,8 +22,8 @@
                     <td><a href="/personajes/{{$persona->slug}}">{{ $persona->titulo }} {{ $persona->nombre }}</a></td>
                     <td>{{ $persona->descripcion }}</td>
                     <td>{{ $persona->apartamento }}</td>
-                    <td><a href="/personajes/{{$persona->slug}}/edit"><i class="fa fa-edit"></i></a></td>
-                    <td><a href="{{ route('personajes.destroy', $persona->slug) }}"><i class="fa fa-times" style="color:red;"></i></a></td>
+                    <td><a href="/personajes/{{$persona->slug}}/edit" class="btn btn-sm btn-primary" style="width: 70px;">Editar</a></td>
+                    <td>@include('layouts.delete')</td>
                 </tr>
                 @endforeach
                 @if(count($personajes) <= 0) <tr>
