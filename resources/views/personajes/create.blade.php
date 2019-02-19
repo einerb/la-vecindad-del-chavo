@@ -1,5 +1,5 @@
-@extends('layouts.layout')
-@section('title', 'Crear personaje')
+@extends('layouts.layout') 
+@section('title', 'Crear personaje') 
 @section('content')
 <div class="container">
     <h2>Nuevo inquilino</h2>
@@ -23,38 +23,13 @@
                             <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    </div><br />
+                    </div>
                     @endif
-
-                    <form class="form-group" method="post" action="{{ route('personajes.store') }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="foto">Foto del personaje *</label><br>
-                            <input type="file" name="foto" id="foto" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtNombre">Título del personaje *</label>
-                            <input type="text" class="form-control" name="titulo" id="titulo"
-                                placeholder="Título del personaje" require autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtNombre">Nombre del personaje *</label>
-                            <input type="text" class="form-control" name="nombre" id="txtNombre"
-                                placeholder="Nombre del personaje" require autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="apto">Número Apartamento *</label>
-                            <input type="text" class="form-control" name="apto" id="apto" placeholder="# Apartamento"
-                                autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="descripcion">Descripción</label>
-                            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"
-                                placeholder="Escribir alguna descripción..." style="resize:none;"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-success">Cargar</button>
-                    </form>
+                    
+                    {{-- Formulario --}}
+                    {!! Form::open(['route'=> 'personajes.store', 'method'=> 'POST', 'files'=>true]) !!}
+                        @include('layouts.forms') {!!
+                    Form::submit('Cargar', ['class'=> 'btn btn-success']) !!} {!! Form::close() !!}
                 </div>
             </div>
         </div>

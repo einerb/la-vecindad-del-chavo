@@ -8,11 +8,11 @@
         <table class="table text-center">
             <thead>
                 <tr>
-                    <th scope="col">Foto</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Apartamento</th>
-                    <th colspan="2" scope="col">Acciones</th>
+                    <th scope="col" width="15%">Foto</th>
+                    <th scope="col" width="15%">Nombres</th>
+                    <th scope="col" width="45%">Descripción</th>
+                    <th scope="col" width="10%">Apartamento</th>
+                    <th colspan="2" scope="col" width="15%">Editar/Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,8 +22,8 @@
                     <td><a href="/personajes/{{$persona->slug}}">{{ $persona->titulo }} {{ $persona->nombre }}</a></td>
                     <td>{{ $persona->descripcion }}</td>
                     <td>{{ $persona->apartamento }}</td>
-                    <td><a href="/personajes/{{$persona->slug}}/edit">Editar</a></td>
-                    <td><a href="{{ route('personajes.destroy', $persona->slug) }}">Eliminar</a></td>
+                    <td><a href="/personajes/{{$persona->slug}}/edit"><i class="fa fa-edit"></i></a></td>
+                    <td><a href="{{ route('personajes.destroy', $persona->slug) }}"><i class="fa fa-times" style="color:red;"></i></a></td>
                 </tr>
                 @endforeach
                 @if(count($personajes) <= 0) <tr>

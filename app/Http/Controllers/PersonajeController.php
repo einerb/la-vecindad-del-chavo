@@ -4,6 +4,7 @@ namespace LaVecindadDelChavo\Http\Controllers;
 
 use LaVecindadDelChavo\Personaje;
 use Illuminate\Http\Request;
+use LaVecindadDelChavo\Http\Requests\StorePersonajeRequest;
 
 class PersonajeController extends Controller
 {
@@ -34,7 +35,7 @@ class PersonajeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePersonajeRequest $request)
     {
         if($request->hasFile('foto')){
             $file = $request->file('foto');
@@ -42,15 +43,10 @@ class PersonajeController extends Controller
             $file->move(public_path().'/images/',$nameFile);
         }
 
-        $request->validate([
-            'nombre'=> 'required',
-            'descripcion' => 'required'
-        ]);
-
         $personaje = new Personaje();
         $personaje->titulo = ucwords($request->input('titulo'));
         $personaje->nombre = ucwords($request->input('nombre'));
-        $personaje->apartamento = $request->input('apto');
+        $personaje->apartamento = $request->input('apartamento');
         $personaje->descripcion = ucwords($request->input('descripcion'));
         $personaje->avatar = $nameFile;
         $personaje->slug = $request->input('nombre');
@@ -94,6 +90,7 @@ class PersonajeController extends Controller
     {       
         $request->validate([
             'nombre'=> 'required',
+            'foto'=>'image',
             'descripcion' => 'required'
         ]);
 
