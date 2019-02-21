@@ -4,7 +4,6 @@ namespace LaVecindadDelChavo\Http\Controllers;
 
 use Illuminate\Http\Request;
 use LaVecindadDelChavo\Apodo;
-use LaVecindadDelChavo\Personaje;
 
 class ApodoController extends Controller
 {
@@ -15,7 +14,7 @@ class ApodoController extends Controller
      */
     public function index()
     {
-        
+        return view('apodos.create');
     }
 
     /**
@@ -23,9 +22,9 @@ class ApodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        
+        return view('apodos.create');
     }
 
     /**

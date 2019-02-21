@@ -12,6 +12,12 @@ class Personaje extends Model
     *
     * @return string
     */
+
+    public function apodos()
+    {
+        return $this->hasMany('LaVecindadDelChavo\Apodo');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
